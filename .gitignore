@@ -1,0 +1,6 @@
+ApiGateway/.mvn/
+ApiGateway/target/
+DiscoveryServer/.idea/
+DiscoveryServer/.mvn/
+DiscoveryServer/target/
+ProductService/.mvn/
