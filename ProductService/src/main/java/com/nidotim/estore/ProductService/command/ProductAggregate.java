@@ -3,6 +3,7 @@ package com.nidotim.estore.ProductService.command;
 import com.nidotim.estore.ProductService.core.events.ProductCreatedEvent;
 import java.math.BigDecimal;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -13,6 +14,7 @@ import org.springframework.beans.BeanUtils;
 
 @Aggregate
 @NoArgsConstructor
+@Slf4j
 public class ProductAggregate {
 
   @AggregateIdentifier
@@ -23,6 +25,7 @@ public class ProductAggregate {
 
   @CommandHandler
   public ProductAggregate(CreateProductCommand createProductCommand) {
+    log.debug("productAggregate entered ... ");
     // Validate Create Product Command
     if (createProductCommand.getPrice().compareTo(BigDecimal.ZERO) <= 0) {
       throw new IllegalArgumentException("Price cannot be less than or equal to 0");

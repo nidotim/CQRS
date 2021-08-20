@@ -4,6 +4,7 @@ import com.nidotim.estore.ProductService.command.CreateProductCommand;
 import java.util.UUID;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/products")
 @RequiredArgsConstructor
+@Slf4j
 public class ProductCommandController {
 
   private final Environment env;
@@ -21,6 +23,7 @@ public class ProductCommandController {
 
   @PostMapping
   public String createProduct(@Valid @RequestBody CreateProductRestModel createProductRestModel) {
+    log.debug("createProduct entered ... ");
     CreateProductCommand createProductCommand = CreateProductCommand.builder()
         .price(createProductRestModel.getPrice())
         .quantity(createProductRestModel.getQuantity())
